@@ -1,4 +1,3 @@
-import cv2 as cv
 import cv2
 import numpy as np
 from skimage.filters import threshold_otsu
@@ -25,27 +24,36 @@ def increase_brightness(img, value):
 
 
 alpha = 0.5
-
+c = 0
 while vid.isOpened():
+    c += 1
     ret, frame = vid.read()
-    img = frame
+    img = frame.copy()
+    cv2.imshow('', img)
     if ret == True:
         beta = 0
-        frame = cv2.addWeighted(frame, alpha, np.zeros(
-            img.shape, img.dtype), 0, beta)
-        cv.imshow('', frame)
- 
-        if(cv.waitKey(25) & 0xFF == ord('w')):
+        frame = cv2.addWeighted(
+            frame,
+            alpha, 
+            np.zeros(
+                img.shape,
+                img.dtype
+            ),
+            0,
+            beta
+        )
+        cv2.imshow('', frame)
+        if(cv2.waitKey(25) & 0xFF == ord('w')):
             alpha -= 0.1
             print(alpha)
-        if(cv.waitKey(25) & 0xFF == ord('e')):
+        if(cv2.waitKey(25) & 0xFF == ord('e')):
             alpha += 0.1
             print
 
-        if(cv.waitKey(25) & 0xFF == ord('q')):
+        if(cv2.waitKey(25) & 0xFF == ord('q')):
             break
     else:
         break
 
 vid.release()
-cv.destroyAllWindows()
+cv2.destroyAllWindows()

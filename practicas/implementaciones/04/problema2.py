@@ -1,8 +1,7 @@
 import cv2
-import cv2 as cv
 import numpy as np
 
-vid = cv.VideoCapture(0)
+vid = cv2.VideoCapture(0)
 
 if(vid.isOpened() == False):
     print('Error opening video stream or file')
@@ -28,15 +27,15 @@ while(vid.isOpened()):
         img_prewitty = cv2.filter2D(img_gaussian, -1, kernely)
 
         cv2.imshow("Original Image", img)
-        cv2.imshow("Canny", img_canny)
-        cv2.imshow("Sobel X", img_sobelx)
-        cv2.imshow("Sobel Y", img_sobely)
-        cv2.imshow("Sobel", img_sobel)
+        #cv2.imshow("Canny", img_canny)
+        #cv2.imshow("Sobel X", img_sobelx)
+        #cv2.imshow("Sobel Y", img_sobely)
+        #cv2.imshow("Sobel", img_sobel)
         cv2.imshow("Prewitt X", img_prewittx)
-        cv2.imshow("Prewitt Y", img_prewitty)
-        cv2.imshow("Prewitt", img_prewittx + img_prewitty)
+        #cv2.imshow("Prewitt Y", img_prewitty)
+        #cv2.imshow("Prewitt", img_prewittx + img_prewitty)
 
-        if(cv.waitKey(25) & 0xFF == ord('q')):
+        if(cv2.waitKey(25) & 0xFF == ord('q')):
             break
     else:
         break

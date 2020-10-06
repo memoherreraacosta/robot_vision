@@ -1,8 +1,7 @@
 import cv2
-import cv2 as cv
 import numpy as np
 
-vid = cv.VideoCapture(0)
+vid = cv2.VideoCapture(0)
 
 if(vid.isOpened() == False):
     print('Error opening video stream or file')
@@ -28,8 +27,8 @@ while(vid.isOpened()):
         img_prewitty = cv2.filter2D(img_gaussian, -1, kernely)
 
         cv2.imshow("Original Image", img)
-        grayFrame = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-        ret1, thresh1 = cv.threshold(grayFrame, 127, 255, cv.THRESH_BINARY)
+        grayFrame = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        ret1, thresh1 = cv2.threshold(grayFrame, 127, 255, cv2.THRESH_BINARY)
         img_canny = cv2.Canny(thresh1, 100, 200)
         cv2.imshow("Edge Binary", img_canny)
         #cv2.imshow("Canny", img_canny)
@@ -40,7 +39,7 @@ while(vid.isOpened()):
         #cv2.imshow("Prewitt Y", img_prewitty)
         #cv2.imshow("Prewitt", img_prewittx + img_prewitty)
 
-        if(cv.waitKey(25) & 0xFF == ord('q')):
+        if(cv2.waitKey(25) & 0xFF == ord('q')):
             break
     else:
         break
